@@ -1,3 +1,5 @@
+// using to route the request to a function - handling incomming request
+
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateMessageDto } from './dtos/create-message.dto';
 

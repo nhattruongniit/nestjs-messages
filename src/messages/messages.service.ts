@@ -1,2 +1,27 @@
 // handle data access & business logic
-export class MessagesService {}
+
+interface Repository {
+  findOne(id: string);
+  findAll();
+  create(content: string);
+}
+export class MessagesService {
+  messagesRepository: Repository;
+
+  constructor(repo: Repository) {
+    // services is creating its own dependencies
+    this.messagesRepository = repo;
+  }
+
+  findOne(id: string) {
+    return this.messagesRepository.findOne(id);
+  }
+
+  findAll() {
+    return this.messagesRepository.findAll();
+  }
+
+  create(content: string) {
+    return this.messagesRepository.create(content);
+  }
+}

@@ -1,27 +1,27 @@
 // handle data access & business logic
+import { Injectable } from '@nestjs/common';
+import { MessagesRepository } from './messages.repository';
 
-interface Repository {
-  findOne(id: string);
-  findAll();
-  create(content: string);
-}
+@Injectable()
 export class MessagesService {
-  messagesRepository: Repository;
+  // messagesRepository: Repository;
+  // constructor(repo: Repository) {
+  //   // services is creating its own dependencies
+  //   this.messagesRepository = repo;
+  // }
 
-  constructor(repo: Repository) {
-    // services is creating its own dependencies
-    this.messagesRepository = repo;
-  }
+  // DI
+  constructor(public messagesRepo: MessagesRepository) {}
 
   findOne(id: string) {
-    return this.messagesRepository.findOne(id);
+    return this.messagesRepo.findOne(id);
   }
 
   findAll() {
-    return this.messagesRepository.findAll();
+    return this.messagesRepo.findAll();
   }
 
   create(content: string) {
-    return this.messagesRepository.create(content);
+    return this.messagesRepo.create(content);
   }
 }
